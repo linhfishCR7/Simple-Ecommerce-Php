@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Hang Hóa</title>
     <?php
     include_once '../layout/header.php';
     ?>
@@ -30,7 +30,8 @@
         <br>
         <div class="row">
             <div class="col-md-3">
-                <a href=""><img src="https://img.icons8.com/cute-clipart/64/000000/add-property.png" /></a>
+                <h2>Thêm</h2>
+                <a href="/source/Admin/HangHoa/ThemHH.php"><img src="https://img.icons8.com/cute-clipart/64/000000/add-property.png" /></a>
             </div>
             <div class="col-md-6"><h1>Bảng Hàng Hóa</h1></div>
             <div class="col-md-3"></div>
@@ -71,8 +72,8 @@
                                 <td><img src="<?php echo $row['Hinh'] ?>" alt="" style="height: 100px; width: 100px;"></td>
                                 <td><?php echo $row['MoTaHH'] ?></td>
                                 <td><?php echo $row['Sale'] ?></td>
-                                <td><a href=""><img src="https://img.icons8.com/metro/26/000000/edit.png" /></a></td>
-                                <td><a href=""><img src="https://img.icons8.com/material-sharp/26/000000/filled-trash.png" /></a></td>
+                                <td><a href="/source/Admin/HangHoa/CapNhatHH.php?MSHH=<?php echo $row['MSHH'] ?>"><img src="https://img.icons8.com/metro/26/000000/edit.png" /></a></td>
+                                <td><a href="/source/Admin/HangHoa/XoaHH.php?MSHH=<?php echo $row['MSHH'] ?>"><img src="https://img.icons8.com/material-sharp/26/000000/filled-trash.png" /></a></td>
                             </tr>
                         <?php } ?>
                     </tbody>
