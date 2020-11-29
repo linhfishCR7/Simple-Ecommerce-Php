@@ -33,7 +33,9 @@ if(isset($_POST['btnSave']))
     header('location:HangHoa.php');
 }
 
-
+if (isset($_POST['btnCancel'])) {
+    header('location:HangHoa.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +110,7 @@ if(isset($_POST['btnSave']))
                         <div class="control-group warning">
                             <label class="control-label" for="MaNhom">Mã Nhóm</label>
                             <div class="controls">
-                            <select class="form-control" id="MaNhom" name="MaNhom">
+                            <select class="form-control" id="MaNhom" name="MaNhom" style="width: 182px;">
                             <?php
                         $sql = "SELECT  * FROM `nhomhanghoa` ";
                         $result = mysqli_query($conn, $sql);
@@ -144,9 +146,11 @@ if(isset($_POST['btnSave']))
                                 <!-- <span class="help-inline">Something may have gone wrong</span> -->
                             </div>
                         </div>
-                        
-                        <button class="btn btn-primary" name="btnSave">Cập nhật</button>
-                </form>
+                        <br>
+                        <div class="control-group warning">
+                            <button class="btn btn-primary" name="btnSave">Cập nhật</button>
+                            <button class="btn btn-info" name="btnCancel">Quay về</button>
+                        </div>
             </div>
         </div>
 

@@ -43,6 +43,9 @@ if (isset($_POST['btnSave'])) {
     // Sau khi cập nhật dữ liệu, tự động điều hướng về trang Danh sách
     header('location:HangHoa.php');
 }
+if (isset($_POST['btnCancel'])) {
+    header('location:HangHoa.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,18 +120,18 @@ if (isset($_POST['btnSave'])) {
                         <div class="control-group warning">
                             <label class="control-label" for="MaNhom">Mã Nhóm</label>
                             <div class="controls">
-                                <select class="form-control" id="MaNhom" name="MaNhom">
+                                <select class="form-control" id="MaNhom" name="MaNhom" style="width:182px;">
                                     <?php
                                     $sql = "SELECT  * FROM `nhomhanghoa` as nhh";
                                     $result = mysqli_query($conn, $sql);
 
                                     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                        if ($sanphamRow['MaNhom']  == $row['MaNhom']) {
                                     ?>
-                                        if(<?php echo $sanphamRow['MaNhom'] ?> == <?php echo $row['MaNhom'] ?>){
-                                        <option value="<?php echo $row['MaNhom'] ?>" selected><?php echo $row['TenNhom'] ?></option>
-                                        }else{
+                                            <option value="<?php echo $row['MaNhom'] ?>" selected><?php echo $row['TenNhom'] ?></option>
+                                        <?php } ?>
                                         <option value="<?php echo $row['MaNhom'] ?>"><?php echo $row['TenNhom'] ?></option>
-                                        }
+
                                     <?php } ?>
                                 </select>
                             </div>
@@ -144,7 +147,7 @@ if (isset($_POST['btnSave'])) {
                         <div class="control-group warning">
                             <label class="control-label" for="MoTaHH">Mô Tả hang Hóa</label>
                             <div class="controls">
-                                <input id="MoTaHH" name="MoTaHH" cols="30" rows="10" value="<?php echo $sanphamRow['MoTaHH'] ?>"></input>
+                                <input id="MoTaHH" name="MoTaHH"  value="<?php echo $sanphamRow['MoTaHH'] ?>"></input>
                                 <!-- <span class="help-inline">Something may have gone wrong</span> -->
                             </div>
                         </div>
@@ -157,8 +160,13 @@ if (isset($_POST['btnSave'])) {
                                 <!-- <span class="help-inline">Something may have gone wrong</span> -->
                             </div>
                         </div>
+                        <br>
+                        <div class="control-group warning">
+                            <button class="btn btn-primary" name="btnSave">Cập nhật</button>
+                            <button class="btn btn-info" name="btnCancel">Quay về</button>
+                        </div>
 
-                        <button class="btn btn-primary" name="btnSave">Cập nhật</button>
+
                 </form>
             </div>
         </div>

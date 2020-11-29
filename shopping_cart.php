@@ -73,7 +73,7 @@ EOT;
 						<tr class="cart_item">
 							<td class="product-name">
 								<div class="media">
-									<img class="pull-left" src="assets/dest/images/shoping1.jpg" alt="">
+									<img class="pull-left" style="height: 100px; width: 100px;" src="<?php echo $row['Hinh']; ?>" alt="">
 									<div class="media-body">
 										<p class="font-large table-title"><?php echo $row['TenHH']; ?></p>
 										
