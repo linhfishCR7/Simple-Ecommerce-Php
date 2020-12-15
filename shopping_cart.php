@@ -6,9 +6,8 @@ include_once(__DIR__ . '/config.php');
 $data = [];
 if (isset($_SESSION['giohangdata'])) {
 	$data = $_SESSION['giohangdata'];
-	
-} else { 
-    $data = [];
+} else {
+	$data = [];
 }
 // Yêu cầu `Twig` vẽ giao diện được viết trong file `frontend/thanhtoan/giohang.html.twig`
 // với dữ liệu truyền vào file giao diện được đặt tên là `giohangdata`
@@ -59,24 +58,24 @@ if (isset($_SESSION['giohangdata'])) {
 						</tr>
 					</thead>
 					<tbody>
-					<?php 
-					$MSHH = $_GET['MSHH'];
-							$sql = <<<EOT
+						<?php
+						$MSHH = $_GET['MSHH'];
+						$sql = <<<EOT
 SELECT  hh.*,nhh.* FROM `hanghoa` hh 
 JOIN `nhomhanghoa` nhh ON hh.MaNhom = nhh.MaNhom  
 WHERE hh.MSHH='$MSHH'
 EOT;
-							// Thực thi câu truy vấn SQL để lấy về dữ liệu ban đầu của record 
-							$result = mysqli_query($conn, $sql);
-							$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-									?>
+						// Thực thi câu truy vấn SQL để lấy về dữ liệu ban đầu của record 
+						$result = mysqli_query($conn, $sql);
+						$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+						?>
 						<tr class="cart_item">
 							<td class="product-name">
 								<div class="media">
 									<img class="pull-left" style="height: 100px; width: 100px;" src="<?php echo $row['Hinh']; ?>" alt="">
 									<div class="media-body">
 										<p class="font-large table-title"><?php echo $row['TenHH']; ?></p>
-										
+
 										<a class="table-edit" href="#">Sửa</a>
 									</div>
 								</div>
@@ -86,11 +85,10 @@ EOT;
 								<span class="amount">$<?php echo $row['Gia']; ?></span>
 							</td>
 
-							
+
 
 							<td class="product-quantity">
 								<input name="Qty" id="Qty" type="number" value="<?php echo $row['Qty']; ?>" style="width: 80px;height: 40px;" min="1">
-
 							</td>
 
 							<td class="product-subtotal">
@@ -103,7 +101,7 @@ EOT;
 						</tr>
 					</tbody>
 
-					
+
 				</table>
 				<!-- End of Shop Table Products -->
 			</div>

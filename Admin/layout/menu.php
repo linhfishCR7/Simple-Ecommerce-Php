@@ -38,7 +38,7 @@
           <a class="dropdown-item" href="Blogs.php">Blogs</a>
           <a class="dropdown-item" href="ChiTietDonHang.php">Chi Tiết Đơn Hàng</a>
           <a class="dropdown-item" href="DatHang.php">Đặt Hàng</a>
-          <a class="dropdown-item" href="HangHoa.php">Hàng Hóa</a>
+          <a class="dropdown-item" href="HangHoa/HangHoa.php">Hàng Hóa</a>
           <a class="dropdown-item" href="KhachHang.php">Khách Hàng</a>
           <a class="dropdown-item" href="NhanVien.php">Nhân Viên</a>
           <a class="dropdown-item" href="NhomHangHoa.php">Nhóm Hàng Hóa</a>

@@ -16,7 +16,7 @@
 
 					<div class="beta-comp">
 						<div class="cart">
-							<a href="/source/shopping_cart.php"><div class="beta-select"><i class="fa fa-shopping-cart"></i> Cart <i class="fa fa-chevron-down"></i></div></a> 
+							<a href="/source/shopping_cart.php"><div class="beta-select"><i class="fa fa-shopping-cart"></i> Cart</div></a> 
 
 						</div> <!-- .cart -->
 					</div>

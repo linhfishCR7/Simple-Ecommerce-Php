@@ -12,11 +12,15 @@ if (!isset($_SESSION["email_logged"])) {
 // Chuẩn bị câu truy vấn $sqlSelect, lấy dữ liệu ban đầu của record cần update
 // Lấy giá trị khóa chính được truyền theo dạng QueryString Parameter key1=value1&key2=value2...
 $MSHH = $_GET['MSHH'];
-$sqlSelect = "SELECT * FROM `hanghoa` as hh WHERE hh.MSHH='$MSHH';";
+//var_dump($MSHH);die;
+
+$sqlSelect = "SELECT * FROM `hanghoa` hh WHERE hh.MSHH = '$MSHH'";
+// var_dump($sqlSelect);die;
 
 // Thực thi câu truy vấn SQL để lấy về dữ liệu ban đầu của record cần update
 $resultSelect = mysqli_query($conn, $sqlSelect);
 $sanphamRow = mysqli_fetch_array($resultSelect, MYSQLI_ASSOC); // 1 record
+// var_dump($sanphamRow);die;
 /* --- End Truy vấn dữ liệu Sản phẩm theo khóa chính --- */
 
 // 2. Nếu người dùng có bấm nút Đăng ký thì thực thi câu lệnh UPDATE
@@ -27,25 +31,57 @@ if (isset($_POST['btnSave'])) {
     $Gia = $_POST['Gia'];
     $SoLuongHang = $_POST['SoLuongHang'];
     $MaNhom = $_POST['MaNhom'];
-    $Hinh = $_POST['Hinh'];
+    // $Hinh = $_POST['Hinh'];
     $MoTaHH = $_POST['MoTaHH'];
     $Sale = $_POST['Sale'];
 
-    // Câu lệnh INSERT
-    $sql = "UPDATE `hanghoa` SET MSHH='$MSHH',TenHH='$TenHH', Gia=$Gia, SoLuongHang=$SoLuongHang, MaNhom='$MaNhom', Hinh='$Hinh', MoTaHH='$MoTaHH', Sale=$Sale WHERE MSHH='$MSHH';";
+    if (isset($_FILES['Hinh'])) {
+        // Đường dẫn để chứa thư mục upload trên ứng dụng web của chúng ta. Các bạn có thể tùy chỉnh theo ý các bạn.
+        // Ví dụ: các file upload sẽ được lưu vào thư mục ../../assets/uploads
+        $upload_dir = "../../image/upload/";
 
-    // Thực thi INSERT
-    mysqli_query($conn, $sql);
+        // Đối với mỗi file, sẽ có các thuộc tính như sau:
+        // $_FILES['hsp_tentaptin']['name']     : Tên của file chúng ta upload
+        // $_FILES['hsp_tentaptin']['type']     : Kiểu file mà chúng ta upload (hình ảnh, word, excel, pdf, txt, ...)
+        // $_FILES['hsp_tentaptin']['tmp_name'] : Đường dẫn đến file tạm trên web server
+        // $_FILES['hsp_tentaptin']['error']    : Trạng thái của file chúng ta upload, 0 => không có lỗi
+        // $_FILES['hsp_tentaptin']['size']     : Kích thước của file chúng ta upload
 
-    // Đóng kết nối
-    mysqli_close($conn);
+        // Nếu file upload bị lỗi, tức là thuộc tính error > 0
+        if ($_FILES['Hinh']['error'] > 0) {
+            echo 'File Upload Bị Lỗi';
+            die;
+        } else {
+            // Tiến hành di chuyển file từ thư mục tạm trên server vào thư mục chúng ta muốn chứa các file uploads
+            // Ví dụ: move file từ C:\xampp\tmp\php6091.tmp -> C:/xampp/htdocs/learning.nentang.vn/php/twig/assets/uploads/hoahong.jpg
+            $Hinh = $_FILES['Hinh']['name'];
+            $hinhanh = date('YmdHis') . '_' . $Hinh; //20200530154922_hoahong.jpg
+            move_uploaded_file($_FILES['Hinh']['tmp_name'], $upload_dir . $hinhanh);
 
-    // Sau khi cập nhật dữ liệu, tự động điều hướng về trang Danh sách
+            // Xóa file cũ để tránh rác trong thư mục UPLOADS
+            $old_file = $upload_dir . $sanphamRow['Hinh'];
+            if (file_exists($old_file)) {
+                unlink($old_file);
+            }
+        }
+    }
+        // Câu lệnh INSERT
+        $sql = "UPDATE `hanghoa` SET MSHH='$MSHH',TenHH='$TenHH', Gia=$Gia, SoLuongHang=$SoLuongHang, MaNhom='$MaNhom', Hinh='$hinhanh', MoTaHH='$MoTaHH', Sale=$Sale WHERE MSHH='$MSHH';";
+
+
+        // Thực thi INSERT
+        mysqli_query($conn, $sql);
+        // Đóng kết nối
+        mysqli_close($conn);
+
+        // Sau khi cập nhật dữ liệu, tự động điều hướng về trang Danh sách
+        header('location:HangHoa.php');
+    
+    
+}if (isset($_POST['btnCancel'])) {
     header('location:HangHoa.php');
 }
-if (isset($_POST['btnCancel'])) {
-    header('location:HangHoa.php');
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,13 +118,13 @@ if (isset($_POST['btnCancel'])) {
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-8">
-                <form class="form-horizontal" name="frmHangHoa" id="frmHangHoa" method="post" action="CapNhatHH.php">
+                <form class="form-horizontal" name="frmHangHoa" id="frmHangHoa" method="post" action="CapNhatHH.php" enctype="multipart/form-data">
                     <fieldset>
                         <legend>Cập Nhật Hàng Hóa</legend>
                         <div class="control-group success">
                             <label class="control-label" for="MSHH">Mã Hàng Hóa</label>
-                            <div class="controls">
-                                <input type="text" id="MSHH" name="MSHH" value="<?php echo $sanphamRow['MSHH'] ?>">
+                            <div class="controls ">
+                                <input type="text" id="MSHH" name="MSHH" value="<?php echo $sanphamRow['MSHH'] ?>" readonly>
                                 <!-- <span class="help-inline">Woohoo!</span> -->
                             </div>
                         </div>
@@ -136,18 +172,27 @@ if (isset($_POST['btnCancel'])) {
                                 </select>
                             </div>
                         </div>
+                        <?php
+                        $sql1 = "SELECT hh.Hinh FROM `hanghoa` hh WHERE hh.MSHH = '$MSHH'";
+                        $result1 = mysqli_query($conn, $sql1);
+                        $Row1 = mysqli_fetch_array($result1, MYSQLI_ASSOC); // 1 record
 
-                        <div class="control-group warning">
-                            <label class="control-label" for="Hinh">Hình</label>
+                        ?>
+                        <div class="form-group">
+                            <label class="control-label" for="bl_ma">Hình ảnh</label>
+                            <br />
+                            <img src="/source/image/upload/<?php echo $Row1['Hinh'] ?>" class="img-fluid" width="300px" />
+                        </div>
+                        <div class="control-group">
+                            <label for="Hinh" class="control-label">Tập tin ảnh</label>
                             <div class="controls">
-                                <input id="Hinh" name="Hinh" cols="30" rows="10" value="<?php echo $sanphamRow['Hinh'] ?>"></input>
-                                <!-- <span class="help-inline">Something may have gone wrong</span> -->
+                                <input type="file" class="input-file uniform_on" id="Hinh" name="Hinh" value="">
                             </div>
                         </div>
                         <div class="control-group warning">
                             <label class="control-label" for="MoTaHH">Mô Tả hang Hóa</label>
                             <div class="controls">
-                                <input id="MoTaHH" name="MoTaHH"  value="<?php echo $sanphamRow['MoTaHH'] ?>"></input>
+                                <input id="MoTaHH" name="MoTaHH" value="<?php echo $sanphamRow['MoTaHH'] ?>"></input>
                                 <!-- <span class="help-inline">Something may have gone wrong</span> -->
                             </div>
                         </div>

@@ -69,7 +69,7 @@
                                 <td><?php echo $row['Gia'] ?></td>
                                 <td><?php echo $row['SoLuongHang'] ?></td>
                                 <td><?php echo $row['MaNhom'] ?></td>
-                                <td><img src="../../image/upload/<?php echo $row['Hinh'] ?>" alt="" style="height: 100px; width: 100px;"></td>
+                                <td><img src="/source/image/upload/<?php echo $row['Hinh'] ?>" alt="" style="height: 100px; width: 100px;"></td>
                                 <td><?php echo $row['MoTaHH'] ?></td>
                                 <td><?php echo $row['Sale'] ?></td>
                                 <td><a href="/source/Admin/HangHoa/CapNhatHH.php?MSHH=<?php echo $row['MSHH'] ?>"><img src="https://img.icons8.com/metro/26/000000/edit.png" /></a></td>

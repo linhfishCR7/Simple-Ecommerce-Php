@@ -39,7 +39,8 @@ include_once(__DIR__ . '/config.php');
 
 				<div class="history-slider">
 					<div class="history-navigation">
-						<a data-slide-index="0" href="blog_with_2sidebars_type_e.html" class="circle"><span class="auto-center">1</span></a>
+					
+						<a data-slide-index="1" href="blog_with_2sidebars_type_e.html" class="circle"><span class="auto-center">1</span></a>
 						<a data-slide-index="1" href="blog_with_2sidebars_type_e.html" class="circle"><span class="auto-center">2</span></a>
 						<a data-slide-index="2" href="blog_with_2sidebars_type_e.html" class="circle"><span class="auto-center">3</span></a>
 						<a data-slide-index="3" href="blog_with_2sidebars_type_e.html" class="circle"><span class="auto-center">4</span></a>
