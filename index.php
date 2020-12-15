@@ -68,7 +68,7 @@ include_once(__DIR__ . '/config.php');
 
 												<div class="single-item-header">
 
-													<a href="/source/product.php?MSHH=<?php echo $row['MSHH']; ?>"><img src="<?php echo $row['Hinh']; ?>" class="hinh" alt=""></a>
+													<a href="/source/product.php?MSHH=<?php echo $row['MSHH']; ?>"><img src="/source/image/upload/<?php echo $row['Hinh']; ?>" class="hinh" alt=""></a>
 
 												</div>
 												<div class="single-item-body">
@@ -114,7 +114,7 @@ include_once(__DIR__ . '/config.php');
 												<?php } ?>
 
 												<div class="single-item-header">
-													<a href="/source/product.php?MSHH=<?php echo $row['MSHH']; ?>"><img src="<?php echo $row['Hinh']; ?>" class="hinh" alt=""></a>
+													<a href="/source/product.php?MSHH=<?php echo $row['MSHH']; ?>"><img src="/source/image/upload/<?php echo $row['Hinh']; ?>" class="hinh" alt=""></a>
 												</div>
 												<div class="single-item-body">
 													<p class="single-item-title"><?php echo $row['TenHH']; ?></p>

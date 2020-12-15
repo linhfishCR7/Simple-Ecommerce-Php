@@ -54,7 +54,7 @@ EOT;
 
 					
 							<div class="col-sm-4">
-								<img src="<?php echo $row['Hinh']; ?>" alt="">
+								<img src="/source/image/upload/<?php echo $row['Hinh']; ?>" alt="">
 							</div>
 							<div class="col-sm-8">
 								<div class="single-item-body">
@@ -135,7 +135,7 @@ EOT;
 								while ($row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC)) {
 								?>
 									<div class="media beta-sales-item">
-										<a class="pull-left" href="/source/product.php?MSHH=<?php echo $row2['MSHH']; ?>"><img src="<?php echo $row2['Hinh']; ?>" alt=""></a>
+										<a class="pull-left" href="/source/product.php?MSHH=<?php echo $row2['MSHH']; ?>"><img src="/source/image/upload/<?php echo $row2['Hinh']; ?>" alt=""></a>
 										<div class="media-body">
 											<?php echo $row2['TenHH']; ?>
 											<span class="beta-sales-price">$<?php echo $row2['Gia']; ?></span>

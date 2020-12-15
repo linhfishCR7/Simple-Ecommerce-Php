@@ -16,9 +16,14 @@
     <?php
     include_once '../layout/header.php';
     ?>
-    <link href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css" rel="stylesheet">
+<link href="http://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
 
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+<script src="http://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
 
 </head>
 
@@ -37,12 +42,12 @@
             <div class="col-md-3"></div>
 
         </div>
-        <div class="row">
+        <div class="row my-3">
             <div class="col-md-12">
 
-                <table id="table"  data-toggle="table" data-search="true" data-show-columns="true">
-                    <thead>
-                        <tr class="table-primary text-center ">
+                <table id="myTable" class="table table-bordered table-striped table-hover" data-toggle="table" data-search="true" data-show-columns="true">
+                    <thead class="table-dark">
+                        <tr class="text-center">
                             <th data-field="id" data-valign="middle">ID</th>
                             <th data-field="name">Tên Sản Phẩm</th>
                             <th data-field="price">Giá</th>

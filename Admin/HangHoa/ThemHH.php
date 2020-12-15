@@ -72,9 +72,7 @@ if (isset($_POST['btnCancel'])) {
     <?php
     include_once '../layout/header.php';
     ?>
-    <link href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css" rel="stylesheet">
-
-    <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+    
 
 </head>
 

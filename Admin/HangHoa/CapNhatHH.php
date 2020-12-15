@@ -37,7 +37,7 @@ if (isset($_POST['btnSave'])) {
 
     if (isset($_FILES['Hinh'])) {
         // Đường dẫn để chứa thư mục upload trên ứng dụng web của chúng ta. Các bạn có thể tùy chỉnh theo ý các bạn.
-        // Ví dụ: các file upload sẽ được lưu vào thư mục ../../assets/uploads
+        // Ví dụ: các file upload sẽ được lưu vào thư mục ../../image/upload/
         $upload_dir = "../../image/upload/";
 
         // Đối với mỗi file, sẽ có các thuộc tính như sau:
@@ -53,9 +53,8 @@ if (isset($_POST['btnSave'])) {
             die;
         } else {
             // Tiến hành di chuyển file từ thư mục tạm trên server vào thư mục chúng ta muốn chứa các file uploads
-            // Ví dụ: move file từ C:\xampp\tmp\php6091.tmp -> C:/xampp/htdocs/learning.nentang.vn/php/twig/assets/uploads/hoahong.jpg
             $Hinh = $_FILES['Hinh']['name'];
-            $hinhanh = date('YmdHis') . '_' . $Hinh; //20200530154922_hoahong.jpg
+            $hinhanh = date('YmdHis') . '_' . $Hinh; 
             move_uploaded_file($_FILES['Hinh']['tmp_name'], $upload_dir . $hinhanh);
 
             // Xóa file cũ để tránh rác trong thư mục UPLOADS
@@ -74,7 +73,7 @@ if (isset($_POST['btnSave'])) {
         // Đóng kết nối
         mysqli_close($conn);
 
-        // Sau khi cập nhật dữ liệu, tự động điều hướng về trang Danh sách
+        // Sau khi cập nhật dữ liệu, tự động điều hướng về trang HangHoa
         header('location:HangHoa.php');
     
     
